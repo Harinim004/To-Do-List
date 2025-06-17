@@ -1,0 +1,255 @@
+:root {
+  --bg: #e3f2fd;
+  --text: #222;
+  --primary: #00bcd4;
+  --card-bg: rgba(255, 255, 255, 0.6);
+  --shadow: rgba(0, 0, 0, 0.1);
+}
+
+body.dark {
+  --bg: #121212;
+  --text: #f0f0f0;
+  --primary: #ff4081;
+  --card-bg: rgba(40, 40, 40, 0.6);
+  --shadow: rgba(0, 0, 0, 0.4);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Outfit', sans-serif;
+  transition: background 0.4s, color 0.4s;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.container {
+  backdrop-filter: blur(15px);
+  background: var(--card-bg);
+  box-shadow: 0 12px 30px var(--shadow);
+  border-radius: 20px;
+  padding: 30px 25px;
+  width: 100%;
+  max-width: 500px;
+  animation: popUp 0.7s ease;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.task-input {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.task-input textarea {
+  width: 100%;
+  padding: 14px;
+  min-height: 100px;
+  border-radius: 12px;
+  border: none;
+  resize: vertical;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.task-input textarea:focus {
+  outline: none;
+  background: #fff;
+}
+
+.task-input button {
+  align-self: flex-end;
+  background: var(--primary);
+  color: white;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+
+.filters {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 20px;
+}
+
+.filters button {
+  background: transparent;
+  border: 2px solid var(--primary);
+  color: var(--primary);
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.filters .active,
+.filters button:hover {
+  background: var(--primary);
+  color: white;
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+  margin-bottom: 10px;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  animation: fadeIn 0.5s ease;
+}
+
+body.dark li {
+  background: rgba(40, 40, 40, 0.5);
+}
+
+li.completed {
+  text-decoration: line-through;
+  background: rgba(144, 238, 144, 0.3);
+}
+
+.task-text {
+  flex: 1;
+}
+
+.task-actions button {
+  background: none;
+  border: none;
+  font-size: 18px;
+  margin-left: 10px;
+  cursor: pointer;
+  color: var(--text);
+  transition: transform 0.2s;
+}
+
+.task-actions button:hover {
+  transform: scale(1.2);
+}
+
+.theme-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.theme-toggle input {
+  display: none;
+}
+
+.theme-toggle label {
+  cursor: pointer;
+  font-size: 22px;
+  background: var(--card-bg);
+  padding: 6px 12px;
+  border-radius: 30px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+@keyframes popUp {
+  from {
+    transform: scale(0.9) rotateX(10deg);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) rotateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(15px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+/* Markdown styling */
+.preview h1, .preview h2 { font-size: 18px; margin-bottom: 5px; }
+.preview ul { padding-left: 20px; }
+.preview li { list-style: disc; }
+
+/* Modal overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(5px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+.modal-content {
+  background: var(--card-bg);
+  color: var(--text);
+  padding: 30px;
+  border-radius: 20px;
+  max-width: 600px;
+  width: 90%;
+  box-shadow: 0 12px 40px var(--shadow);
+  transform: rotateY(90deg);
+  animation: flipIn 0.4s ease forwards;
+  position: relative;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.modal-content h1, .modal-content h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 18px;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  color: var(--text);
+}
+
+@keyframes flipIn {
+  from {
+    transform: rotateY(90deg);
+    opacity: 0;
+  }
+  to {
+    transform: rotateY(0deg);
+    opacity: 1;
+  }
+}
+
+
+

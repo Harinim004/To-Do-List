@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title> To-Do List</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="theme-toggle">
+    <input type="checkbox" id="darkToggle" onchange="toggleDarkMode()">
+    <label for="darkToggle">🌙</label>
+  </div>
+
+  <div class="container">
+    <h1>📝 To-Do List</h1>
+
+   
+
+    <div class="task-input">
+  <textarea id="taskInput" placeholder="Write your task... You can include headings, bullets, etc."></textarea>
+  <button onclick="addTask()">➕ Add</button>
+</div>
+<div id="modalOverlay" class="modal-overlay" onclick="closeModal()">
+  <div class="modal-content" onclick="event.stopPropagation()">
+    <span class="close-btn" onclick="closeModal()">✖</span>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+
+
+    <div class="filters">
+      <button onclick="filterTasks('all')" class="active">All</button>
+      <button onclick="filterTasks('pending')">Pending</button>
+      <button onclick="filterTasks('completed')">Completed</button>
+    </div>
+
+    <ul id="taskList"></ul>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+</body>
+</html>
