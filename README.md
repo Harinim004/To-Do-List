@@ -17,13 +17,6 @@ A **colorful**, **animated**, and **Markdown-enabled** task management web app w
 - 💫 Smooth transitions and effects
 - 📱 Fully responsive UI (desktop + mobile)
 
----
-
-## 🖼️ Screenshot Preview
-
-> _Include your screenshots or a hosted GIF preview here_
-
----
 
 ## 📁 Project Structure
 
